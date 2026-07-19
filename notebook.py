@@ -1,3 +1,10 @@
+# Открываем файл с автоматическим закрытием после блока
+content = ""
+with open('list.txt', 'r', encoding="utf-8") as file:
+    content = file.read().splitlines()
+    
+# Файл уже закрыт
+
 
 # Когда переменную вызывают, обычно, ей сразу присваивают какие то данные
 #cat_name = "Арчи"
@@ -16,11 +23,19 @@ while  menu:
     menu_number = input("выберите опцию: ")
     menu_number = int(menu_number)
     if(menu_number == 1):
-        for index,x in enumerate(box):
-            print(str(index + 1) + ": " + x)
+        for index,element in enumerate(content):
+          print(str(index + 1) + ": " + element)
+        
     if(menu_number == 2):
         menu = False
         print('=====КОНЕЦ=====')
     if(menu_number == 3):
         spisok = input("введите задачу: ")
-        box.append(spisok)
+        content.append(spisok)
+
+
+        with open('list.txt', 'w', encoding='utf-8') as file:
+            for element in content:
+                file.write(element + "\n")  
+            
+        
